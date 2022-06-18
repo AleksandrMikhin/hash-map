@@ -1,15 +1,11 @@
 package project.entity;
 
-import java.util.Collection;
-import java.util.Map;
-import java.util.Set;
-
 /**
  * This class provides an object that represents a HashMap implementation for trainee.
  * <p>
- * Implemented put, remove, get, containsKey methods.
+ * Implemented methods of {@link MyMap} interface.
  */
-public class MyHashMap<K, V> implements Map<K, V> {
+public class MyHashMap<K, V> implements MyMap<K, V> {
     private static final int DEFAULT_START_CAPACITY = 16;
 
     private int currentSize;
@@ -41,6 +37,12 @@ public class MyHashMap<K, V> implements Map<K, V> {
         return currentSize == 0;
     }
 
+    /**
+     * Puts a key-value pair in the map. If the map previously contained a mapping for the key,
+     * the old value is replaced with the new value.
+     *
+     * @return the previous value if it's been changed, or {@code null} otherwise
+     */
     @Override
     public V put(final K key, final V value) {
         final int bucketId = index(key, numberOfBuckets);
@@ -65,8 +67,6 @@ public class MyHashMap<K, V> implements Map<K, V> {
 
     /**
      * Returns {@code true} if this map contains a key-value pair with the key.
-     *
-     * @param key the key
      */
     @Override
     public boolean containsKey(final Object key) {
@@ -152,35 +152,5 @@ public class MyHashMap<K, V> implements Map<K, V> {
             sb.append('}');
         }
         return sb.append('}').toString();
-    }
-
-    @Override
-    public boolean containsValue(final Object value) {
-        return false;
-    }
-
-    @Override
-    public void putAll(final Map<? extends K, ? extends V> m) {
-
-    }
-
-    @Override
-    public void clear() {
-
-    }
-
-    @Override
-    public Set<K> keySet() {
-        return null;
-    }
-
-    @Override
-    public Collection<V> values() {
-        return null;
-    }
-
-    @Override
-    public Set<Entry<K, V>> entrySet() {
-        return null;
     }
 }
