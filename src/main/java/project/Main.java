@@ -1,24 +1,29 @@
 package project;
 
 import project.entity.MyHashMap;
+import project.entity.MyMap;
+import project.proxy.ProxyMyMap;
 
 public class Main {
 
     public static void main(final String[] args) {
-        final MyHashMap<Integer, String> myMap = new MyHashMap<>();
-        myMap.put(1, "one");
-        myMap.put(2, "two");
-        myMap.put(3, "three");
-        myMap.put(17, "one_second");
-        myMap.put(18, "two_second");
-        myMap.put(19, "three_second");
+        final MyMap<Integer, String> myMap = new MyHashMap<>();
 
-        System.out.println("myMap = " + myMap);
+        final MyMap<Integer, String> myProxyMap = new ProxyMyMap<>(myMap);
 
-        System.out.println("myMap.put(17, \"one_second_replace\") = " + myMap.put(17, "one_second_replace"));
-        System.out.println("myMap.get(18) = " + myMap.get(18));
-        System.out.println("myMap.remove(3) = " + myMap.remove(3));
+        myProxyMap.put(1, "one");
+        myProxyMap.put(2, "two");
+        myProxyMap.put(3, "three");
+        myProxyMap.put(17, "one_second");
+        myProxyMap.put(18, "two_second");
+        myProxyMap.put(19, "three_second");
 
-        System.out.println("myMap = " + myMap);
+        System.out.println("myProxyMap = " + myProxyMap);
+
+        System.out.println("myProxyMap.put(17, \"one_second_replace\") = " + myProxyMap.put(17, "one_second_replace"));
+        System.out.println("myProxyMap.get(18) = " + myProxyMap.get(18));
+        System.out.println("myProxyMap.remove(3) = " + myProxyMap.remove(3));
+
+        System.out.println("myProxyMap = " + myProxyMap);
     }
 }
